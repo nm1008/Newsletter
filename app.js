@@ -3,8 +3,14 @@
 const express = require("express");
 const request = require("request");
 const https = require("https");
+require('dotenv').config();
+
+
 
 const app = express();
+const api_key = process.env.API_KEY;
+
+console.log(api_key);
 
 const port = 3000;
 
@@ -39,7 +45,7 @@ app.post("/", (req, res) => {
 
     const options = {
         method: "POST",
-        auth: "Nikko1:c32d08b14a6cee4b7fea1db6dffae489-us9"
+        auth: `Nikko1:${api_key}`
     }
     
     const request = https.request(url, options, (response) =>{
@@ -67,8 +73,3 @@ app.listen(process.env.PORT || port, () => {
     console.log(`Server is running on port ${port}`);
 })
 
-// API KEY
-// c32d08b14a6cee4b7fea1db6dffae489-us9
-
-// audience id
-// 2b336e1af4.
